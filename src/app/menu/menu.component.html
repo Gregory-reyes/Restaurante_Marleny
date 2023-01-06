@@ -2,14 +2,43 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <mat-list fxFlex>
-    <mat-list-item *ngFor="let plato de platos">
-      <img matListAvatar src={{plato.image}} alt={{plato.nombre}}>
-      <h1 matLine> {{plato.nombre}} </h1>
-      <p matLine>
-        <span> {{plato.descripcion}} </span>
-      </p>
-    </mat-list-item>
-  </mat-list>
+     <div fxFlex>
+      <div>
+        <h3>Menu</h3>
+        <hr>
+      </div>
+    </div>
+
+    <div fxFlex>
+      <mat-grid-list cols="2" rowHeight="200px">
+        <mat-grid-tile *ngFor="let plato of platos">
+          <img height="200px" src={{plato.image}} alt={{plato.nombre}}>
+          <mat-grid-tile-footer>
+            <h1>{{plato.nombre | uppercase}}</h1>
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>  
+  
+ 
+
+  <div fxFlex *ngIf="selectedPlato">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{selectedPlato.nombre | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{selectedPlato.image}} alt={{selectedPlato.nombre}}>
+      <mat-card-content>
+        <p>{{selectedPlato.descripcion}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 
 </div>
